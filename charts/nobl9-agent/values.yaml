@@ -1,0 +1,25 @@
+
+deployment:
+  image: "nobl9/agent"
+  pull_policy: Latest
+
+resources:
+  # limits:
+  #   cpu: "0.5"
+  #   memory: "700Mi"
+  requests:
+    cpu: "0.1"
+    memory: "350Mi"
+
+# Navigate to the Integrations tab in Nobl9 UI to obtain below values
+config:
+  project: "default"
+  organization: ""
+  datasource_name: ""
+  client_id: ""
+  client_secret: ""
+
+  # Values below should not be changed while working Nobl9 backend
+  intake_url: "https://nobl9.com/api/input"
+  auth_server: "auseg9kiegWKEtJZC416"
+  okta_org_url: "https://accounts.nobl9.com"

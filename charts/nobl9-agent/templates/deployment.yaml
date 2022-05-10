@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "nobl9-agent.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      nobl9-agent-name: {{ .Values.config.datasource_name | quote  }}
+      nobl9-agent-project: {{ .Values.config.project | quote  }}
+      nobl9-agent-organization: {{ .Values.config.organization | quote }}
+  template:
+    metadata:
+      labels:
+        nobl9-agent-name: {{ .Values.config.datasource_name | quote  }}
+        nobl9-agent-project: {{ .Values.config.project | quote  }}
+        nobl9-agent-organization: {{ .Values.config.organization | quote  }}
+    spec:
+      containers:
+        - name: agent-container
+          image: {{ .Values.deployment.image }}
+          imagePullPolicy: {{ .Values.deployment.pull_policy }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          env:
+            - name: N9_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: client_id
+                  name: {{ template "nobl9-agent.fullname" . }}
+            - name: N9_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: client_secret
+                  name: {{ template "nobl9-agent.fullname" . }}
+            - name: N9_INTAKE_URL
+              value: {{ .Values.config.intake_url | quote  }}
+            - name: N9_AUTH_SERVER
+              value: {{ .Values.config.auth_server | quote  }}
+            - name: N9_OKTA_ORG_URL
+              value: {{ .Values.config.okta_org_url | quote  }}
