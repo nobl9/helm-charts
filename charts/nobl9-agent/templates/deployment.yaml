@@ -7,20 +7,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      nobl9-agent-name: {{ .Values.config.datasource_name | quote  }}
+      nobl9-agent-name: {{ .Values.config.datasourceName | quote  }}
       nobl9-agent-project: {{ .Values.config.project | quote  }}
       nobl9-agent-organization: {{ .Values.config.organization | quote }}
   template:
     metadata:
       labels:
-        nobl9-agent-name: {{ .Values.config.datasource_name | quote  }}
+        nobl9-agent-name: {{ .Values.config.datasourceName | quote  }}
         nobl9-agent-project: {{ .Values.config.project | quote  }}
         nobl9-agent-organization: {{ .Values.config.organization | quote  }}
     spec:
       containers:
         - name: agent-container
-          image: {{ .Values.deployment.image }}
-          imagePullPolicy: {{ .Values.deployment.pull_policy }}
+          image: {{ .Values.deployment.image }}:{{ .Values.deployment.version }}
+          imagePullPolicy: {{ .Values.deployment.pullPolicy }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           env:
@@ -35,8 +35,10 @@ spec:
                   key: client_secret
                   name: {{ template "nobl9-agent.fullname" . }}
             - name: N9_INTAKE_URL
-              value: {{ .Values.config.intake_url | quote  }}
+              value: {{ .Values.config.intakeUrl | quote  }}
             - name: N9_AUTH_SERVER
-              value: {{ .Values.config.auth_server | quote  }}
+              value: {{ .Values.config.authServer | quote  }}
             - name: N9_OKTA_ORG_URL
-              value: {{ .Values.config.okta_org_url | quote  }}
+              value: {{ .Values.config.oktaOrgUrl | quote  }}
+            - name: N9_ALLOWED_URLS
+              value: {{ .Values.config.allowedUrls | quote  }}

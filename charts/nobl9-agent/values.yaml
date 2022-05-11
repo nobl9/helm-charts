@@ -1,7 +1,8 @@
 
 deployment:
   image: "nobl9/agent"
-  pull_policy: Latest
+  version: "0.43.0"
+  pullPolicy: Always
 
 resources:
   # limits:
@@ -11,15 +12,20 @@ resources:
     cpu: "0.1"
     memory: "350Mi"
 
-# Navigate to the Integrations tab in Nobl9 UI to obtain below values
+## Navigate to the Integrations tab in Nobl9 UI to obtain below values
 config:
   project: "default"
   organization: ""
-  datasource_name: ""
-  client_id: ""
-  client_secret: ""
+  datasourceName: ""
+  clientId: ""
+  clientSecret: ""
 
-  # Values below should not be changed while working Nobl9 backend
-  intake_url: "https://nobl9.com/api/input"
-  auth_server: "auseg9kiegWKEtJZC416"
-  okta_org_url: "https://accounts.nobl9.com"
+  ## Values below should not be changed while working Nobl9 backend
+  intakeUrl: "https://nobl9.com/api/input"
+  authServer: "auseg9kiegWKEtJZC416"
+  oktaOrgUrl: "https://accounts.nobl9.com"
+
+  ## N9_ALLOWED_URLS is an optional safety parameter that limits the URLs that an Agent is able to query
+  ## for metrics. URLs defined in the Nobl9 app are prefix-compared against the N9_ALLOWED_URLS list of
+  ## comma separated URLs.
+  # allowedUrls:
