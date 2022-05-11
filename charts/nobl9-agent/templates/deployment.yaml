@@ -21,8 +21,10 @@ spec:
         - name: agent-container
           image: {{ .Values.deployment.image }}:{{ .Values.deployment.version }}
           imagePullPolicy: {{ .Values.deployment.pullPolicy }}
+          {{- with .Values.resources }}
           resources:
-{{ toYaml .Values.resources | indent 12 }}
+            {{ toYaml . | nindent 12 }}
+          {{- end }}
           env:
             - name: N9_CLIENT_ID
               valueFrom:
