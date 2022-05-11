@@ -12,6 +12,10 @@ spec:
       nobl9-agent-organization: {{ .Values.config.organization | quote }}
   template:
     metadata:
+      {{- with .Values.deployment.annotations }}
+      annotations:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         nobl9-agent-name: {{ .Values.config.datasourceName | quote  }}
         nobl9-agent-project: {{ .Values.config.project | quote  }}
