@@ -12,6 +12,12 @@ resources:
     cpu: "0.1"
     memory: "350Mi"
 
+## Apply labels
+labels: {}
+
+## Pod Labels
+# podLabels: {}
+
 ## Navigate to the Integrations tab in Nobl9 UI to obtain below values
 config:
   project: "default"
