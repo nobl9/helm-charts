@@ -1,4 +1,3 @@
-
 deployment:
   image: "nobl9/agent"
   version: "0.43.0"
