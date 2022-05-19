@@ -66,3 +66,7 @@ spec:
               value: {{ .Values.config.oktaOrgUrl | quote  }}
             - name: N9_ALLOWED_URLS
               value: {{ .Values.config.allowedUrls | quote  }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
