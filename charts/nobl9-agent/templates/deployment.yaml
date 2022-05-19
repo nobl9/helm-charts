@@ -31,9 +31,9 @@ spec:
         nobl9.com/agent-name: {{ .Values.config.datasourceName | quote  }}
         nobl9.com/agent-project: {{ .Values.config.project | quote  }}
         nobl9.com/agent-organization: {{ .Values.config.organization | quote  }}
-{{- with .Values.podLabels }}
-{{ toYaml . | indent 8 }}
-{{- end }}
+        {{- with .Values.podLabels }}
+        {{ toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
