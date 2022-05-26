@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "nobl9-agent.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    helm.sh/chart: {{ template "nobl9-agent.chart" . }}
+    app.kubernetes.io/name: {{ template "nobl9-agent.name" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service  | quote  }}
+    app.kubernetes.io/instance: {{ .Release.Name  | quote  }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion  | quote  }}
+    {{- with .Values.podLabels }}
+    {{ toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ template "nobl9-agent.name" . }}
+      nobl9.com/agent-name: {{ .Values.config.datasourceName | quote  }}
+      nobl9.com/agent-project: {{ .Values.config.project | quote  }}
+      nobl9.com/agent-organization: {{ .Values.config.organization | quote }}
+  template:
+    metadata:
+      {{- with .Values.deployment.annotations }}
+      annotations:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app.kubernetes.io/name: {{ template "nobl9-agent.name" . }}
+        nobl9.com/agent-name: {{ .Values.config.datasourceName | quote  }}
+        nobl9.com/agent-project: {{ .Values.config.project | quote  }}
+        nobl9.com/agent-organization: {{ .Values.config.organization | quote  }}
+        {{- with .Values.podLabels }}
+        {{ toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: agent-container
+          image: {{ .Values.deployment.image }}:{{ .Values.deployment.version }}
+          imagePullPolicy: {{ .Values.deployment.pullPolicy }}
+          {{- with .Values.resources }}
+          resources:
+            {{ toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: N9_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: client_id
+                  name: {{ template "nobl9-agent.fullname" . }}
+            - name: N9_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: client_secret
+                  name: {{ template "nobl9-agent.fullname" . }}
+            - name: N9_INTAKE_URL
+              value: {{ .Values.config.intakeUrl | quote  }}
+            - name: N9_AUTH_SERVER
+              value: {{ .Values.config.authServer | quote  }}
+            - name: N9_OKTA_ORG_URL
+              value: {{ .Values.config.oktaOrgUrl | quote  }}
+            - name: N9_ALLOWED_URLS
+              value: {{ .Values.config.allowedUrls | quote  }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
