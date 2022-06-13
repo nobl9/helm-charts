@@ -2,6 +2,7 @@ deployment:
   image: "nobl9/agent"
   version: "0.43.0"
   pullPolicy: Always
+  annotations: {}
 
 resources:
   limits:
@@ -11,11 +12,20 @@ resources:
     cpu: "0.1"
     memory: "350Mi"
 
-## Apply labels
-labels: {}
+## Apply additional labels
+extralabels: {}
 
 ## Pod Labels
-# podLabels: {}
+podLabels: {}
+
+## Some data sources require additional authentification
+dataSourceAuthType:
+
+## Some data sources require additional authentification
+dataSourceAuthName:
+
+## Some data sources require additional secrets for authentification
+dataSourceAuthSecrets:
 
 ## Navigate to the Integrations tab in Nobl9 UI to obtain below values
 config:
