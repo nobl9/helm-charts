@@ -1,6 +1,6 @@
 deployment:
   image: "nobl9/agent"
-  version: "0.43.0"
+  version: "0.49.0-rc1"
   pullPolicy: Always
   annotations: {}
 
@@ -12,20 +12,24 @@ resources:
     cpu: "0.1"
     memory: "350Mi"
 
-## Apply additional labels
-extralabels: {}
+## Security context
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 2000
 
-## Pod Labels
-podLabels: {}
+## Authentification method environment variable required by some data sources
+dataSourceAuthMethod:
+#  AUTH_METHOD: api_token
 
-## Some data sources require additional authentification
-dataSourceAuthType:
+## Name of the secrets environment variables for authentification required by data source as NAME: key
+dataSourceAuthNames:
+#  API_TOKEN: instana_api_token
 
-## Some data sources require additional authentification
-dataSourceAuthName:
-
-## Some data sources require additional secrets for authentification
+## Secrets for authentification required by data source as key: value
 dataSourceAuthSecrets:
+#  instana_api_token: abcd1234!@#$
 
 ## Navigate to the Integrations tab in Nobl9 UI to obtain below values
 config:
@@ -44,3 +48,9 @@ config:
   ## for metrics. URLs defined in the Nobl9 app are prefix-compared against the N9_ALLOWED_URLS list of
   ## comma separated URLs.
   # allowedUrls:
+
+## Apply additional container labels
+extraLabels: {}
+
+## Pod Labels
+podLabels: {}
