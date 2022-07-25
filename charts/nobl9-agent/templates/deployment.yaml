@@ -58,17 +58,6 @@ spec:
                 secretKeyRef:
                   key: client_secret
                   name: {{ template "nobl9-agent.fullname" . }}
-            {{- range $key, $value := .Values.dataSourceAuthType }}
-            - name: {{ $key }}
-              value: {{ $value | quote }}
-            {{- end }}
-            {{- range $key, $value := .Values.dataSourceAuthName }}
-            - name: {{ $key }}
-              valueFrom:
-                secretKeyRef:
-                  key: {{ $value | quote }}
-                  name: {{ template "nobl9-agent.fullname" $ }}
-            {{- end }}
             - name: N9_INTAKE_URL
               value: {{ .Values.config.intakeUrl | quote  }}
             - name: N9_AUTH_SERVER
