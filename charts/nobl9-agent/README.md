@@ -34,7 +34,7 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 | deployment.annotations | object | `{}` |  |
 | deployment.image | string | `"nobl9/agent"` |  |
 | deployment.pullPolicy | string | `"Always"` |  |
-| deployment.version | string | `"0.49.0-rc1"` |  |
+| deployment.version | string | `"0.48.0"` |  |
 | extraLabels | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | resources.limits.cpu | string | `"1.0"` |  |

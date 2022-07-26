@@ -1,6 +1,6 @@
 deployment:
   image: "nobl9/agent"
-  version: "0.49.0-rc1"
+  version: "0.48.0"
   pullPolicy: Always
   annotations: {}
 
