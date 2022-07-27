@@ -15,7 +15,10 @@ helm repo add nobl9 https://nobl9.github.io/helm-charts
 
 You can then run `helm search repo nobl9` to see the charts.
 
-Chart documentation is available in [nobl9 directory](https://github.com/nobl9/helm-charts/blob/main/charts/nobl9-agent/README.md).
+More information on each chart can be found in the chart's README.
+
+## Available Charts
+- [Nobl9 Agent](https://github.com/nobl9/helm-charts/tree/main/charts/nobl9-agent). Some great description of what this is
 
 ## License
 
