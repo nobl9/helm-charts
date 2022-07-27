@@ -31,7 +31,7 @@ spec:
         nobl9.com/agent-name: {{ .Values.config.datasourceName | quote  }}
         nobl9.com/agent-project: {{ .Values.config.project | quote  }}
         nobl9.com/agent-organization: {{ .Values.config.organization | quote  }}
-        {{- with .Values.podLabels }}
+        {{- with .Values.extraLabels }}
         {{ toYaml . | nindent 8 }}
         {{- end }}
     spec:
@@ -58,6 +58,17 @@ spec:
                 secretKeyRef:
                   key: client_secret
                   name: {{ template "nobl9-agent.fullname" . }}
+            {{- range $key, $value := .Values.dataSourceAuthMethod }}
+            - name: {{ $key }}
+              value: {{ $value }}
+            {{- end }}
+            {{- range $key, $value := .Values.dataSourceAuthName }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  key: {{ $value }}
+                  name: {{ template "nobl9-agent.fullname" $ }}
+            {{- end }}
             - name: N9_INTAKE_URL
               value: {{ .Values.config.intakeUrl | quote  }}
             - name: N9_AUTH_SERVER
@@ -67,6 +78,4 @@ spec:
             - name: N9_ALLOWED_URLS
               value: {{ .Values.config.allowedUrls | quote  }}
           securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
+            {{- toYaml .Values.securityContext | nindent 12 }}
