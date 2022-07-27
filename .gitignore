@@ -1,4 +1,5 @@
-/charts/*/charts
+# Chart dependencies
+**/charts/*.tgz
 .idea
 .vscode
 .project
