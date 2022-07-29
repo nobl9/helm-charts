@@ -1,6 +1,6 @@
-# Collection of helm charts to use with Nobl9
+# Nobl9 helm charts
 
-The code is provided as-is with no warranties.
+Collection of helm charts to use with Nobl9.
 
 ## Usage
 
