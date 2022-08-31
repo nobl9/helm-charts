@@ -5,8 +5,16 @@ deployment:
   version: "0.48.0"
   # -- Image Pull Policy
   pullPolicy: Always
+  # -- Additional data to be included in deployment as Envs, key-value pair
+  extraEnvs:
+    # AUTH_METHOD: api_token
+  # -- Additional data to be included in Secret and read by deployment as Envs, key-value pair
+  extraSecretEnvs:
+  #  splunk_observability_access_token: abcd1234!@#$
   # -- Deployment annotations
   annotations: {}
+  # -- Additional Labels
+  extraLabels: {}
 
 resources:
   requests:
@@ -25,22 +33,10 @@ securityContext:
   allowPrivilegeEscalation: false
   # -- ReadOnly file system mode if set to true
   readOnlyRootFilesystem: true
-  # -- Runs the container as a root user if set to true
+  # -- Runs the container as a root user if set to false
   runAsNonRoot: true
   # -- Runs the container with specified PID
   runAsUser: 2000
-
-# -- Authentification method environment variable required by some data sources
-dataSourceAuthMethod:
-#  AUTH_METHOD: api_token
-
-# -- Name of the secrets environment variables for authentification required by data source as key-value pair
-dataSourceAuthNames:
-#  API_TOKEN: instana_api_token
-
-# -- Secrets for authentification required by data source as key: value
-dataSourceAuthSecrets:
-#  instana_api_token: abcd1234!@#$
 
 config:
   # -- Nobl9 Project name
@@ -51,8 +47,12 @@ config:
   datasourceName: ""
   # -- Nobl9 Client ID
   clientId: ""
+  # -- The Name of Secret containing Nobl9 Client ID, data field name must equal client_id
+  clientIdFromSecret:
   # -- Nobl9 Client secret
   clientSecret: ""
+  # -- The Name of Secret containing Nobl9 Client Secret, data field name must equal client_secret
+  clientSecretFromSecret:
 
   # -- Nobl9 API URL
   intakeUrl: "https://nobl9.com/api/input"
@@ -66,8 +66,3 @@ config:
   # -- comma separated URLs.
   # allowedUrls:
 
-# -- Additional Container Labels
-extraLabels: {}
-
-# -- Additional Pod Labels
-podLabels: {}

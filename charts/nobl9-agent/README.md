@@ -22,28 +22,28 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 |-----|------|---------|-------------|
 | config.authServer | string | `"auseg9kiegWKEtJZC416"` | Nobl9 Auth Server ID |
 | config.clientId | string | `""` | Nobl9 Client ID |
+| config.clientIdFromSecret | string | `nil` | The Name of Secret containing Nobl9 Client ID, data field name must equal client_id |
 | config.clientSecret | string | `""` | Nobl9 Client secret |
+| config.clientSecretFromSecret | string | `nil` | The Name of Secret containing Nobl9 Client Secret, data field name must equal client_secret |
 | config.datasourceName | string | `""` | Nobl9 Data Source name |
 | config.intakeUrl | string | `"https://nobl9.com/api/input"` | Nobl9 API URL |
 | config.oktaOrgUrl | string | `"https://accounts.nobl9.com"` | Nobl9 Okta Organization URL |
 | config.organization | string | `""` | Nobl9 Organization name |
 | config.project | string | `"default"` | Nobl9 Project name |
-| dataSourceAuthMethod | string | `nil` | Authentification method environment variable required by some data sources |
-| dataSourceAuthNames | string | `nil` | Name of the secrets environment variables for authentification required by data source as key-value pair |
-| dataSourceAuthSecrets | string | `nil` | Secrets for authentification required by data source as key: value |
 | deployment.annotations | object | `{}` | Deployment annotations |
+| deployment.extraEnvs | string | `nil` | Additional data to be included in deployment as Envs, key-value pair |
+| deployment.extraLabels | object | `{}` | Additional Labels |
+| deployment.extraSecretEnvs | string | `nil` | Additional data to be included in Secret and read by deployment as Envs, key-value pair |
 | deployment.image | string | `"nobl9/agent"` | Image used by chart |
 | deployment.pullPolicy | string | `"Always"` | Image Pull Policy |
 | deployment.version | string | `"0.48.0"` | Agent version (image tag) |
-| extraLabels | object | `{}` | Additional Container Labels |
-| podLabels | object | `{}` | Additional Pod Labels |
 | resources.limits.cpu | string | `"1.0"` | CPU limit |
 | resources.limits.memory | string | `"1Gi"` | Memory limit |
 | resources.requests.cpu | string | `"0.1"` | CPU request |
 | resources.requests.memory | string | `"350Mi"` | Memory request |
 | securityContext.allowPrivilegeEscalation | bool | `false` | Grants container a privileged status if set to true |
 | securityContext.readOnlyRootFilesystem | bool | `true` | ReadOnly file system mode if set to true |
-| securityContext.runAsNonRoot | bool | `true` | Runs the container as a root user if set to true |
+| securityContext.runAsNonRoot | bool | `true` | Runs the container as a root user if set to false |
 | securityContext.runAsUser | int | `2000` | Runs the container with specified PID |
 
 ----------------------------------------------
