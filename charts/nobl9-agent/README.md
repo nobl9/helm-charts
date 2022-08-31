@@ -20,7 +20,7 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.authServer | string | `"auseg9kiegWKEtJZC416"` | Nobl9 Auth Server URL |
+| config.authServer | string | `"auseg9kiegWKEtJZC416"` | Nobl9 Auth Server ID |
 | config.clientId | string | `""` | Nobl9 Client ID |
 | config.clientSecret | string | `""` | Nobl9 Client secret |
 | config.datasourceName | string | `""` | Nobl9 Data Source name |

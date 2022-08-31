@@ -56,7 +56,7 @@ config:
 
   # -- Nobl9 API URL
   intakeUrl: "https://nobl9.com/api/input"
-  # -- Nobl9 Auth Server URL
+  # -- Nobl9 Auth Server ID
   authServer: "auseg9kiegWKEtJZC416"
   # -- Nobl9 Okta Organization URL
   oktaOrgUrl: "https://accounts.nobl9.com"
