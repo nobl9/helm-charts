@@ -28,13 +28,15 @@ jobs:
           - v1.23.9
           - v1.24.3
           - v1.25.0
-
+        kubeval:
+          - v0.16.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Run kubeval
         env:
           KUBERNETES_VERSION: ${{ matrix.k8s }}
+          KUBEVAL_VERSION: ${{ matrix.kubeval }}
         run: .github/kubeval.sh
 
   install-chart:
