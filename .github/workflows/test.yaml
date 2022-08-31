@@ -14,30 +14,8 @@ jobs:
       - name: Run chart-testing (lint)
         uses: helm/chart-testing-action@main
         with:
-          command: lint
+          command: lint --all
           config: ./ct.yaml
-
-  kubeval-chart:
-    runs-on: ubuntu-latest
-    needs:
-      - lint-chart
-    strategy:
-      matrix:
-        k8s:
-          - v1.22.12
-          - v1.23.9
-          - v1.24.3
-          - v1.25.0
-        kubeval:
-          - v0.16.1
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Run kubeval
-        env:
-          KUBERNETES_VERSION: ${{ matrix.k8s }}
-          KUBEVAL_VERSION: ${{ matrix.kubeval }}
-        run: .github/kubeval.sh
 
   install-chart:
     name: install-chart
@@ -62,5 +40,5 @@ jobs:
       - name: Run chart-testing (install)
         uses: helm/chart-testing-action@main
         with:
-          command: install
+          command: install --all
           config: ./ct.yaml
