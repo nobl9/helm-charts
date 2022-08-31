@@ -71,5 +71,3 @@ extraLabels: {}
 
 # -- Additional Pod Labels
 podLabels: {}
-
-#test
