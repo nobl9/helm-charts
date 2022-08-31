@@ -2,8 +2,8 @@ name: release
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    # branches:
+    #   - main
     paths:
       - 'charts/**'
 
