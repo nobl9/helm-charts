@@ -10,7 +10,7 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| nobl9 | <nobl9@nobl9.com> | <https://nobl9.com> |
+| nobl9 | <support@nobl9.com> | <https://nobl9.com> |
 
 ## Source Code
 
