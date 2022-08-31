@@ -1,4 +1,4 @@
-name: Release helm chart
+name: Release Charts
 on:
   release:
     types: [published]
