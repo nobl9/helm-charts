@@ -20,27 +20,27 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| config.allowedUrls | string | `nil` | Populates N9_ALLOWED_URLS that limits the URLs which an Agent is able to query |
 | config.authServer | string | `"auseg9kiegWKEtJZC416"` | Nobl9 Auth Server ID |
-| config.clientId | string | `""` | Nobl9 Client ID |
-| config.clientIdFromSecret | string | `nil` | The Name of Secret containing Nobl9 Client ID, data field name must equal client_id |
-| config.clientSecret | string | `""` | Nobl9 Client secret |
-| config.clientSecretFromSecret | string | `nil` | The Name of Secret containing Nobl9 Client Secret, data field name must equal client_secret |
+| config.clientId | string | `""` | Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
+| config.clientSecret | string | `""` | Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
 | config.datasourceName | string | `""` | Nobl9 Data Source name |
 | config.intakeUrl | string | `"https://nobl9.com/api/input"` | Nobl9 API URL |
 | config.oktaOrgUrl | string | `"https://accounts.nobl9.com"` | Nobl9 Okta Organization URL |
 | config.organization | string | `""` | Nobl9 Organization name |
 | config.project | string | `"default"` | Nobl9 Project name |
-| deployment.annotations | object | `{}` | Deployment annotations |
-| deployment.extraEnvs | string | `nil` | Additional data to be included in deployment as Envs, key-value pair |
+| deployment.annotations | object | `{}` | Custom annotations |
+| deployment.extraEnvs | string | `nil` | Additional Envs |
 | deployment.extraLabels | object | `{}` | Additional Labels |
-| deployment.extraSecretEnvs | string | `nil` | Additional data to be included in Secret and read by deployment as Envs, key-value pair |
 | deployment.image | string | `"nobl9/agent"` | Image used by chart |
 | deployment.pullPolicy | string | `"Always"` | Image Pull Policy |
 | deployment.version | string | `"0.48.0"` | Agent version (image tag) |
+| namespaceOverride | string | `nil` | Override the namespace |
 | resources.limits.cpu | string | `"1.0"` | CPU limit |
 | resources.limits.memory | string | `"1Gi"` | Memory limit |
 | resources.requests.cpu | string | `"0.1"` | CPU request |
 | resources.requests.memory | string | `"350Mi"` | Memory request |
+| secret.extraData | string | `nil` | Extra stringData to be included in secret, use deployment.extraEnvs to load as deployment Envs |
 | securityContext.allowPrivilegeEscalation | bool | `false` | Grants container a privileged status if set to true |
 | securityContext.readOnlyRootFilesystem | bool | `true` | ReadOnly file system mode if set to true |
 | securityContext.runAsNonRoot | bool | `true` | Runs the container as a root user if set to false |

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "nobl9-agent.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ template "nobl9-agent.namespace" . }}
   labels:
     helm.sh/chart: {{ template "nobl9-agent.chart" . }}
     app.kubernetes.io/name: {{ template "nobl9-agent.name" . }}
@@ -31,7 +31,7 @@ spec:
         nobl9.com/agent-name: {{ .Values.config.datasourceName | quote  }}
         nobl9.com/agent-project: {{ .Values.config.project | quote  }}
         nobl9.com/agent-organization: {{ .Values.config.organization | quote  }}
-        {{- with .Values.deployment.extraLabels }}
+        {{- with .Values.extraLabels }}
         {{ toYaml . | nindent 8 }}
         {{- end }}
     spec:
@@ -45,37 +45,22 @@ spec:
           imagePullPolicy: {{ .Values.deployment.pullPolicy }}
           {{- with .Values.resources }}
           resources:
-            {{ toYaml . | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           env:
+            {{- if .Values.config.clientId }}
             - name: N9_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   key: client_id
-                  {{- if .Values.config.clientIdFromSecret }}
-                  name: {{ .Values.config.clientIdFromSecret | quote }}
-                  {{- else }}
                   name: {{ template "nobl9-agent.fullname" . }}
-                  {{- end }}
+            {{- end }}
+            {{- if .Values.config.clientSecret }}
             - name: N9_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   key: client_secret
-                  {{- if .Values.config.clientSecretFromSecret }}
-                  name: {{ .Values.config.clientSecretFromSecret | quote }}
-                  {{- else }}
                   name: {{ template "nobl9-agent.fullname" . }}
-                  {{- end }}
-            {{- range $key, $value := .Values.deployment.extraSecretEnvs }}
-            - name: {{ $key }}
-              valueFrom:
-                secretKeyRef:
-                  key: {{ $key }}
-                  name: {{ template "nobl9-agent.fullname" $ }}
-            {{- end }}
-            {{- range $key, $value := .Values.deployment.extraEnvs }}
-            - name: {{ $key }}
-              value: {{ $value }}
             {{- end }}
             - name: N9_INTAKE_URL
               value: {{ .Values.config.intakeUrl | quote  }}
@@ -83,7 +68,12 @@ spec:
               value: {{ .Values.config.authServer | quote  }}
             - name: N9_OKTA_ORG_URL
               value: {{ .Values.config.oktaOrgUrl | quote  }}
+            {{- if .Values.config.allowedUrls }}
             - name: N9_ALLOWED_URLS
               value: {{ .Values.config.allowedUrls | quote  }}
+            {{- end }}
+            {{- with .Values.deployment.extraEnvs }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}

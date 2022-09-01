@@ -1,3 +1,6 @@
+# -- Override the namespace
+namespaceOverride:
+
 deployment:
   # -- Image used by chart
   image: "nobl9/agent"
@@ -5,16 +8,24 @@ deployment:
   version: "0.48.0"
   # -- Image Pull Policy
   pullPolicy: Always
-  # -- Additional data to be included in deployment as Envs, key-value pair
+  # -- Additional Envs
   extraEnvs:
-    # AUTH_METHOD: api_token
-  # -- Additional data to be included in Secret and read by deployment as Envs, key-value pair
-  extraSecretEnvs:
-  #  splunk_observability_access_token: abcd1234!@#$
-  # -- Deployment annotations
+  # - name: API_KEY
+  #   value: my-api-key
+  # - name: splunk_api_token
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: my-existing-secret-key
+  #       name: my-existing-secret
+  # -- Custom annotations
   annotations: {}
   # -- Additional Labels
   extraLabels: {}
+
+secret:
+  # -- Extra stringData to be included in secret, use deployment.extraEnvs to load as deployment Envs
+  extraData:
+    # splunk_api_token: my-api-token
 
 resources:
   requests:
@@ -45,14 +56,10 @@ config:
   organization: ""
   # -- Nobl9 Data Source name
   datasourceName: ""
-  # -- Nobl9 Client ID
+  # -- Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret
   clientId: ""
-  # -- The Name of Secret containing Nobl9 Client ID, data field name must equal client_id
-  clientIdFromSecret:
-  # -- Nobl9 Client secret
+  # -- Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret
   clientSecret: ""
-  # -- The Name of Secret containing Nobl9 Client Secret, data field name must equal client_secret
-  clientSecretFromSecret:
 
   # -- Nobl9 API URL
   intakeUrl: "https://nobl9.com/api/input"
@@ -61,8 +68,6 @@ config:
   # -- Nobl9 Okta Organization URL
   oktaOrgUrl: "https://accounts.nobl9.com"
 
-  # -- N9_ALLOWED_URLS is an optional safety parameter that limits the URLs that an Agent is able to query
-  # -- for metrics. URLs defined in the Nobl9 app are prefix-compared against the N9_ALLOWED_URLS list of
-  # -- comma separated URLs.
-  # allowedUrls:
+  # -- Populates N9_ALLOWED_URLS that limits the URLs which an Agent is able to query
+  allowedUrls:
 
