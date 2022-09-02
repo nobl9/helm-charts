@@ -17,6 +17,16 @@ deployment:
   #     secretKeyRef:
   #       key: my-existing-secret-key
   #       name: my-existing-secret
+  # - name: N9_CLIENT_ID
+  #   valueFrom:
+  #   secretKeyRef:
+  #     key: client_id
+  #     name: my-existing-secret
+  # - name: N9_CLIENT_SECRET
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: client_secret
+  #       name: my-existing-secret
   # -- Custom annotations
   annotations: {}
   # -- Additional Labels
