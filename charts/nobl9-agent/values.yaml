@@ -19,9 +19,9 @@ deployment:
   #       name: my-existing-secret
   # - name: N9_CLIENT_ID
   #   valueFrom:
-  #   secretKeyRef:
-  #     key: client_id
-  #     name: my-existing-secret
+  #     secretKeyRef:
+  #       key: client_id
+  #       name: my-existing-secret
   # - name: N9_CLIENT_SECRET
   #   valueFrom:
   #     secretKeyRef:
