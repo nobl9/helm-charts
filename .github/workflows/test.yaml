@@ -1,0 +1,42 @@
+name: Lint and Test Charts
+
+on:
+  push:
+    paths:
+      - 'charts/**'
+
+jobs:
+  lint-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run chart-testing (lint)
+        uses: helm/chart-testing-action@main
+        with:
+          command: lint --all
+          config: ./ct.yaml
+
+  install-chart:
+    name: install-chart
+    runs-on: ubuntu-latest
+    needs:
+      - lint-chart
+    strategy:
+      matrix:
+        k8s:
+          - v1.22.9
+          - v1.23.6
+          - v1.24.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Create kind ${{ matrix.k8s }} cluster
+        uses: helm/kind-action@main
+        with:
+          node_image: kindest/node:${{ matrix.k8s }}
+      - name: Run chart-testing (install)
+        uses: helm/chart-testing-action@main
+        with:
+          command: install --all
+          config: ./ct.yaml

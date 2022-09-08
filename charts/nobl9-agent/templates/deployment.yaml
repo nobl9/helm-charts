@@ -2,14 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "nobl9-agent.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ template "nobl9-agent.namespace" . }}
   labels:
     helm.sh/chart: {{ template "nobl9-agent.chart" . }}
     app.kubernetes.io/name: {{ template "nobl9-agent.name" . }}
     app.kubernetes.io/managed-by: {{ .Release.Service  | quote  }}
     app.kubernetes.io/instance: {{ .Release.Name  | quote  }}
     app.kubernetes.io/version: {{ .Chart.AppVersion  | quote  }}
-    {{- with .Values.podLabels }}
+    {{- with .Values.deployment.extraLabels }}
     {{ toYaml . | nindent 4 }}
     {{- end }}
 spec:
@@ -45,29 +45,22 @@ spec:
           imagePullPolicy: {{ .Values.deployment.pullPolicy }}
           {{- with .Values.resources }}
           resources:
-            {{ toYaml . | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           env:
+            {{- if .Values.config.clientId }}
             - name: N9_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   key: client_id
                   name: {{ template "nobl9-agent.fullname" . }}
+            {{- end }}
+            {{- if .Values.config.clientSecret }}
             - name: N9_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   key: client_secret
                   name: {{ template "nobl9-agent.fullname" . }}
-            {{- range $key, $value := .Values.dataSourceAuthMethod }}
-            - name: {{ $key }}
-              value: {{ $value }}
-            {{- end }}
-            {{- range $key, $value := .Values.dataSourceAuthName }}
-            - name: {{ $key }}
-              valueFrom:
-                secretKeyRef:
-                  key: {{ $value }}
-                  name: {{ template "nobl9-agent.fullname" $ }}
             {{- end }}
             - name: N9_INTAKE_URL
               value: {{ .Values.config.intakeUrl | quote  }}
@@ -75,7 +68,12 @@ spec:
               value: {{ .Values.config.authServer | quote  }}
             - name: N9_OKTA_ORG_URL
               value: {{ .Values.config.oktaOrgUrl | quote  }}
+            {{- if .Values.config.allowedUrls }}
             - name: N9_ALLOWED_URLS
               value: {{ .Values.config.allowedUrls | quote  }}
+            {{- end }}
+            {{- with .Values.deployment.extraEnvs }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}

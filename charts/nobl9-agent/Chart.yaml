@@ -8,4 +8,5 @@ sources:
   - https://github.com/nobl9/helm-charts/tree/main/charts/nobl9-agent
 maintainers:
   - name: nobl9
-    email: sre-team@nobl9.com
+    email: support@nobl9.com
+    url: https://nobl9.com

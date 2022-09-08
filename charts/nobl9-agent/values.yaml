@@ -1,56 +1,83 @@
+# -- Override the namespace
+namespaceOverride:
+
 deployment:
+  # -- Image used by chart
   image: "nobl9/agent"
+  # -- Agent version (image tag)
   version: "0.48.0"
+  # -- Image Pull Policy
   pullPolicy: Always
+  # -- Additional Envs
+  extraEnvs:
+  # - name: API_KEY
+  #   value: my-api-key
+  # - name: splunk_api_token
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: my-existing-secret-key
+  #       name: my-existing-secret
+  # - name: N9_CLIENT_ID
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: client_id
+  #       name: my-existing-secret
+  # - name: N9_CLIENT_SECRET
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: client_secret
+  #       name: my-existing-secret
+  # -- Custom annotations
   annotations: {}
+  # -- Additional Labels
+  extraLabels: {}
+
+secret:
+  # -- Extra stringData to be included in secret, use deployment.extraEnvs to load as deployment Envs
+  extraData:
+    # splunk_api_token: my-api-token
 
 resources:
-  limits:
-    cpu: "1.0"
-    memory: "1Gi"
   requests:
+    # -- CPU request
     cpu: "0.1"
+    # -- Memory request
     memory: "350Mi"
+  limits:
+    # -- CPU limit
+    cpu: "1.0"
+    # -- Memory limit
+    memory: "1Gi"
 
-## Security context
 securityContext:
+  # -- Grants container a privileged status if set to true
   allowPrivilegeEscalation: false
+  # -- ReadOnly file system mode if set to true
   readOnlyRootFilesystem: true
+  # -- Runs the container as a root user if set to false
   runAsNonRoot: true
+  # -- Runs the container with specified PID
   runAsUser: 2000
 
-## Authentification method environment variable required by some data sources
-dataSourceAuthMethod:
-#  AUTH_METHOD: api_token
-
-## Name of the secrets environment variables for authentification required by data source as NAME: key
-dataSourceAuthNames:
-#  API_TOKEN: instana_api_token
-
-## Secrets for authentification required by data source as key: value
-dataSourceAuthSecrets:
-#  instana_api_token: abcd1234!@#$
-
-## Navigate to the Integrations tab in Nobl9 UI to obtain below values
 config:
+  # -- Nobl9 Project name
   project: "default"
+  # -- Nobl9 Organization name
   organization: ""
+  # -- Nobl9 Data Source name
   datasourceName: ""
+  # -- Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret
   clientId: ""
+  # -- Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret
   clientSecret: ""
 
-  ## Values below should not be changed while working Nobl9 backend
+  # -- Nobl9 API URL
   intakeUrl: "https://nobl9.com/api/input"
+  # -- Nobl9 Auth Server ID
   authServer: "auseg9kiegWKEtJZC416"
+  # -- Nobl9 Okta Organization URL
   oktaOrgUrl: "https://accounts.nobl9.com"
 
-  ## N9_ALLOWED_URLS is an optional safety parameter that limits the URLs that an Agent is able to query
-  ## for metrics. URLs defined in the Nobl9 app are prefix-compared against the N9_ALLOWED_URLS list of
-  ## comma separated URLs.
-  # allowedUrls:
+  # -- Populates N9_ALLOWED_URLS that limits the URLs which an Agent is able to query
+  allowedUrls:
 
-## Apply additional container labels
-extraLabels: {}
-
-## Pod Labels
-podLabels: {}
