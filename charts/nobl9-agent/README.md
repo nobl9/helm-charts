@@ -34,8 +34,8 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 | deployment.extraLabels | object | `{}` | Additional Labels |
 | deployment.image | string | `"nobl9/agent"` | Image used by chart |
 | deployment.pullPolicy | string | `"Always"` | Image Pull Policy |
-| deployment.version | string | `"0.48.0"` | Agent version (image tag) |
-| namespaceOverride | string | `nil` | Override the namespace |
+| deployment.version | string | `"latest"` | Agent version (image tag) |
+| namespaceOverride | string | `nil` | Override the Namespace |
 | resources.limits.cpu | string | `"1.0"` | CPU limit |
 | resources.limits.memory | string | `"1Gi"` | Memory limit |
 | resources.requests.cpu | string | `"0.1"` | CPU request |

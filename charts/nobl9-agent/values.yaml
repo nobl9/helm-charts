@@ -1,11 +1,11 @@
-# -- Override the namespace
+# -- Override the Namespace
 namespaceOverride:
 
 deployment:
   # -- Image used by chart
-  image: "nobl9/agent"
+  image: nobl9/agent
   # -- Agent version (image tag)
-  version: "0.48.0"
+  version: latest
   # -- Image Pull Policy
   pullPolicy: Always
   # -- Additional Envs
