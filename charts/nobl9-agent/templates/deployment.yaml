@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-       {{- include "nobl9-agent.selectorLabels" . | nindent 6 }}
+      {{- include "nobl9-agent.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.deployment.annotations }}
