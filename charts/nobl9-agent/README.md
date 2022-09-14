@@ -22,19 +22,19 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 |-----|------|---------|-------------|
 | config.allowedUrls | string | `nil` | Populates N9_ALLOWED_URLS that limits the URLs which an Agent is able to query |
 | config.authServer | string | `"auseg9kiegWKEtJZC416"` | Nobl9 Auth Server ID |
-| config.clientId | string | `""` | Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
-| config.clientSecret | string | `""` | Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
-| config.datasourceName | string | `""` | Nobl9 Data Source name |
+| config.clientId | string | `nil` | Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
+| config.clientSecret | string | `nil` | Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
+| config.datasourceName | string | `nil` | Nobl9 Data Source name |
 | config.intakeUrl | string | `"https://app.nobl9.com/api/input"` | Nobl9 API URL |
 | config.oktaOrgUrl | string | `"https://accounts.nobl9.com"` | Nobl9 Okta Organization URL |
-| config.organization | string | `""` | Nobl9 Organization name |
-| config.project | string | `"default"` | Nobl9 Project name |
+| config.organization | string | `nil` | Nobl9 Organization name |
+| config.project | string | `nil` | Nobl9 Project name |
 | deployment.annotations | object | `{}` | Custom annotations |
 | deployment.extraEnvs | string | `nil` | Additional Envs |
-| deployment.extraLabels | object | `{}` | Additional Labels |
 | deployment.image | string | `"nobl9/agent"` | Image used by chart |
 | deployment.pullPolicy | string | `"Always"` | Image Pull Policy |
 | deployment.version | string | `"latest"` | Agent version (image tag) |
+| extraLabels | object | `{}` |  |
 | namespaceOverride | string | `nil` | Override the Namespace |
 | resources.limits.cpu | string | `"1.0"` | CPU limit |
 | resources.limits.memory | string | `"1Gi"` | Memory limit |

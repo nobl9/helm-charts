@@ -4,22 +4,12 @@ metadata:
   name: {{ template "nobl9-agent.fullname" . }}
   namespace: {{ template "nobl9-agent.namespace" . }}
   labels:
-    helm.sh/chart: {{ template "nobl9-agent.chart" . }}
-    app.kubernetes.io/name: {{ template "nobl9-agent.name" . }}
-    app.kubernetes.io/managed-by: {{ .Release.Service  | quote  }}
-    app.kubernetes.io/instance: {{ .Release.Name  | quote  }}
-    app.kubernetes.io/version: {{ .Chart.AppVersion  | quote  }}
-    {{- with .Values.deployment.extraLabels }}
-    {{ toYaml . | nindent 4 }}
-    {{- end }}
+    {{- include "nobl9-agent.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ template "nobl9-agent.name" . }}
-      nobl9.com/agent-name: {{ .Values.config.datasourceName | quote  }}
-      nobl9.com/agent-project: {{ .Values.config.project | quote  }}
-      nobl9.com/agent-organization: {{ .Values.config.organization | quote }}
+       {{- include "nobl9-agent.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.deployment.annotations }}
@@ -27,13 +17,7 @@ spec:
         {{ toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app.kubernetes.io/name: {{ template "nobl9-agent.name" . }}
-        nobl9.com/agent-name: {{ .Values.config.datasourceName | quote  }}
-        nobl9.com/agent-project: {{ .Values.config.project | quote  }}
-        nobl9.com/agent-organization: {{ .Values.config.organization | quote  }}
-        {{- with .Values.extraLabels }}
-        {{ toYaml . | nindent 8 }}
-        {{- end }}
+         {{- include "nobl9-agent.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

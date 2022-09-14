@@ -48,3 +48,35 @@ Allow the secret name to be overridden
     {{ template "nobl9-agent.fullname" . }}
   {{- end -}}
 {{- end -}}
+
+{{/*
+Common labels
+*/}}
+{{- define "nobl9-agent.labels" -}}
+helm.sh/chart: {{ include "nobl9-agent.chart" . }}
+{{ include "nobl9-agent.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.extraLabels }}
+{{ toYaml .Values.extraLabels }}
+{{- end }}
+{{- end -}}
+
+{{/*
+Selector labels
+*/}}
+{{- define "nobl9-agent.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "nobl9-agent.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- if .Values.config.datasourceName }}
+nobl9.com/agent-datasource-name: {{ .Values.config.datasourceName }}
+{{- end }}
+{{- if .Values.config.project }}
+nobl9.com/agent-project: {{ .Values.config.project }}
+{{- end }}
+{{- if .Values.config.organization }}
+nobl9.com/agent-organization: {{ .Values.config.organization }}
+{{- end }}
+{{- end -}}

@@ -1,5 +1,6 @@
 # -- Override the Namespace
 namespaceOverride:
+extraLabels: {}
 
 deployment:
   # -- Image used by chart
@@ -30,7 +31,6 @@ deployment:
   # -- Custom annotations
   annotations: {}
   # -- Additional Labels
-  extraLabels: {}
 
 secret:
   # -- Override the Secret name
@@ -63,15 +63,15 @@ securityContext:
 
 config:
   # -- Nobl9 Project name
-  project: "default"
+  project:
   # -- Nobl9 Organization name
-  organization: ""
+  organization:
   # -- Nobl9 Data Source name
-  datasourceName: ""
+  datasourceName:
   # -- Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret
-  clientId: ""
+  clientId:
   # -- Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret
-  clientSecret: ""
+  clientSecret:
 
   # -- Nobl9 API URL
   intakeUrl: "https://app.nobl9.com/api/input"
