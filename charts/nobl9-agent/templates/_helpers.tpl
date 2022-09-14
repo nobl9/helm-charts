@@ -37,3 +37,14 @@ Allow the release namespace to be overridden for multi-namespace deployments in 
     {{- .Release.Namespace -}}
   {{- end -}}
 {{- end -}}
+
+{{/*
+Allow the secret name to be overridden
+*/}}
+{{- define "nobl9-agent.secret.name" -}}
+  {{- if .Values.secret.nameOverride -}}
+    {{- .Values.secret.nameOverride -}}
+  {{- else -}}
+    {{ template "nobl9-agent.fullname" . }}
+  {{- end -}}
+{{- end -}}

@@ -41,6 +41,7 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 | resources.requests.cpu | string | `"0.1"` | CPU request |
 | resources.requests.memory | string | `"350Mi"` | Memory request |
 | secret.extraData | string | `nil` | Extra stringData to be included in secret, use deployment.extraEnvs to load as deployment Envs |
+| secret.nameOverride | string | `nil` | Override the Secret name |
 | securityContext.allowPrivilegeEscalation | bool | `false` | Grants container a privileged status if set to true |
 | securityContext.readOnlyRootFilesystem | bool | `true` | ReadOnly file system mode if set to true |
 | securityContext.runAsNonRoot | bool | `true` | Runs the container as a root user if set to false |

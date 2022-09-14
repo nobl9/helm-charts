@@ -33,6 +33,8 @@ deployment:
   extraLabels: {}
 
 secret:
+  # -- Override the Secret name
+  nameOverride:
   # -- Extra stringData to be included in secret, use deployment.extraEnvs to load as deployment Envs
   extraData:
     # splunk_api_token: my-api-token
