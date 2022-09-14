@@ -17,7 +17,7 @@ spec:
         {{ toYaml . | nindent 8 }}
       {{- end }}
       labels:
-         {{- include "nobl9-agent.selectorLabels" . | nindent 8 }}
+        {{- include "nobl9-agent.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
