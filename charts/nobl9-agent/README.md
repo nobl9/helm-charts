@@ -25,7 +25,7 @@ Agent to retrieve SLI metrics from configured data sources and send the data bac
 | config.clientId | string | `""` | Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
 | config.clientSecret | string | `""` | Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
 | config.datasourceName | string | `""` | Nobl9 Data Source name |
-| config.intakeUrl | string | `"https://nobl9.com/api/input"` | Nobl9 API URL |
+| config.intakeUrl | string | `"https://app.nobl9.com/api/input"` | Nobl9 API URL |
 | config.oktaOrgUrl | string | `"https://accounts.nobl9.com"` | Nobl9 Okta Organization URL |
 | config.organization | string | `""` | Nobl9 Organization name |
 | config.project | string | `"default"` | Nobl9 Project name |
