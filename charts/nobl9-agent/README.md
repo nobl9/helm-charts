@@ -1,6 +1,6 @@
 # nobl9-agent
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.48.0](https://img.shields.io/badge/AppVersion-0.48.0-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square)
 
 Agent to retrieve SLI metrics from configured data sources and send the data back to the Nobl9 backend.
 
