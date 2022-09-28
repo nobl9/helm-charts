@@ -1,5 +1,7 @@
 # Nobl9 helm charts
 
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/nobl9)](https://artifacthub.io/packages/search?repo=nobl9)
+
 Collection of helm charts to use with Nobl9.
 
 ## Usage
