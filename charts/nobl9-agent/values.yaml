@@ -6,7 +6,7 @@ deployment:
   # -- Image used by chart
   image: nobl9/agent
   # -- Agent version (image tag)
-  version: "0.51.2"
+  version: "0.53.2"
   # -- Image Pull Policy
   pullPolicy: Always
   # -- Additional Envs
