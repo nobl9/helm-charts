@@ -8,15 +8,9 @@ Find the latests documentation at the [docs.nobl9.com](https://docs.nobl9.com/No
 
 ## Required values
 
-* `config.clientId` - the individual Nobl9 client identificator
-* `config.clientSecret` - the individual Nobl9 client secret
+* `clientId` - the individual Nobl9 client identificator, may be provided using [config.clientId](./values.yaml#L72) or [deployment.extraEnvs](./values.yaml#L13)
+* `clientSecret` - the individual Nobl9 client secret, may be provided using [config.clientSecret](./values.yaml#L74) or [deployment.extraEnvs](./values.yaml#L13)
 * data source dependent variables - some of data sources requires additional variables to work with Nobl9 Agent, for example Splunk requires `splunk_observability_access_token`
-
-## Maintainers
-
-| Name | Email | Url |
-| ---- | ------ | --- |
-| nobl9 | <support@nobl9.com> | <https://nobl9.com> |
 
 ## Values
 
@@ -48,3 +42,9 @@ Find the latests documentation at the [docs.nobl9.com](https://docs.nobl9.com/No
 | securityContext.readOnlyRootFilesystem | bool | `true` | ReadOnly file system mode if set to true |
 | securityContext.runAsNonRoot | bool | `true` | Runs the container as a root user if set to false |
 | securityContext.runAsUser | int | `2000` | Runs the container with specified PID |
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| nobl9 | <support@nobl9.com> | <https://nobl9.com> |
