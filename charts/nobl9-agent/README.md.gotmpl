@@ -4,7 +4,70 @@
 
 ## Getting started
 
-Find the latests documentation at the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highlight=helm#helm-chart-configuration)
+To set up the chart, follow these steps:
+
+1. Install **Helm** by following the steps described in the [Helm Documentation](https://helm.sh/docs/intro/quickstart/) and set up a connection to the desired Kubernetes cluster.
+2. Add the Nobl9 repository by entering the following command:
+   ```bash
+   helm repo add nobl9 https://nobl9.github.io/helm-charts
+   ```
+
+   After entering the above-mentioned command, you can discover the available charts, for example:
+
+   ```bash
+   helm search repo Nobl9
+   NAME                    CHART VERSION   APP VERSION     DESCRIPTION
+   nobl9/nobl9-agent       1.0.0           0.48.0          Agent to retrieve SLI metrics from configured d...
+   ```
+
+3. Get the Agent variables from the [Nobl9 Agent configuration page](https://app.nobl9.com/integrations/sources) in the Nobl9 UI.
+
+
+    > You can find the Agent variables in the Nobl9 App by navigating to the **Integrations** > **Sources** and choosing the data source created using the Agent connection method. The variables are presented in the **Agent Configuration** tab.
+
+    > If there are no available data sources created using the Agent connection method in the **Sources** tab, you can create one by following the steps described in the [Agent Documentation](https://docs.nobl9.com/Nobl9_Agent/#creating-the-agent). For more Integration-specific details, refer to the **Agent Configuration in the UI** section in each [Integration’s subpage](https://docs.nobl9.com/Sources/).<br/>
+
+4. Prepare the chart values.
+
+    Review the default configuration and the default values in the [values.yaml](./values.yaml).
+
+    You can extend this file with custom variables as needed. For example, if you want to add OpenTSDB as a data source, create new `values.yml` file and add the following values:
+
+    ```bash
+    config:
+        clientId: my-id
+        clientSecret: my-secret
+    deployment:
+        version: "0.51.2"
+        extraEnvs:
+          - name: N9_METRICS_PORT
+            value: "9090"
+    ```
+
+    **Important notes:**
+
+    * `clientId` and `clientSecret` values correspond to the `N9_CLIENT_ID` and `N9_CLIENT_SECRET` variables from the Agent Configuration.
+
+    * Note that the OpenTSDB data source requires an additional [`N9_METRICS_PORT`](agent-metrics#agents-default-port) variable. The `N9_OKTA_ORG_URL` and `N9_AUTH_SERVER` variables can be omitted because these values are equal to the defaultsReview the default configuration and the default values in the [values.yaml](./values.yaml).
+
+5. Deploy the chart by entering the following command:
+
+   ```bash
+   helm install --values values.yml --generate-name nobl9/nobl9-agent
+   ```
+
+   The expected output looks like this:
+
+    ```bash
+    NAME: nobl9-agent-1663143197
+    LAST DEPLOYED: Wed Sep 14 10:13:20 2022
+    NAMESPACE: default
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    ```
+
+Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highlight=helm#helm-chart-configuration) for more informations.
 
 ## Required values
 
