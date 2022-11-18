@@ -92,7 +92,7 @@ Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highl
 | deployment.image | string | `"nobl9/agent"` | Image used by chart |
 | deployment.pullPolicy | string | `"Always"` | Image Pull Policy |
 | deployment.version | string | `"0.53.2"` | Agent version (image tag) |
-| extraLabels | object | `{}` |  |
+| extraLabels | object | `{}` | Additional labels for created objects. |
 | namespaceOverride | string | `nil` | Override the Namespace |
 | resources.limits.cpu | string | `"1.0"` | CPU limit |
 | resources.limits.memory | string | `"1Gi"` | Memory limit |
@@ -104,6 +104,10 @@ Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highl
 | securityContext.readOnlyRootFilesystem | bool | `true` | ReadOnly file system mode if set to true |
 | securityContext.runAsNonRoot | bool | `true` | Runs the container as a root user if set to false |
 | securityContext.runAsUser | int | `2000` | Runs the container with specified PID |
+| serviceAccount.annotations | object | `{}` | Service account annotations. |
+| serviceAccount.create | bool | `true` | Allow chart to create service account. |
+| serviceAccount.labels | object | `{}` | Additional labels for service account. |
+| serviceAccount.name | string | `nil` | Service account name. Generated from release name by default. |
 
 ## Maintainers
 

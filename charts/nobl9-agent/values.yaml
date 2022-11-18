@@ -1,5 +1,6 @@
 # -- Override the Namespace
 namespaceOverride:
+# -- Additional labels for created objects.
 extraLabels: {}
 
 deployment:
@@ -60,6 +61,17 @@ securityContext:
   runAsNonRoot: true
   # -- Runs the container with specified PID
   runAsUser: 2000
+
+serviceAccount:
+  # -- Allow chart to create service account.
+  create: true
+  # -- Service account name. Generated from release name by default.
+  name:
+  # -- Additional labels for service account.
+  labels: {}
+  # -- Service account annotations.
+  annotations: {}
+#    eks.amazonaws.com/role-arn: arn:aws:iam::1234567890:role/iam-role
 
 config:
   # -- Nobl9 Project name
