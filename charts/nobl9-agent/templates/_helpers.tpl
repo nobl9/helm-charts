@@ -50,6 +50,17 @@ Allow the secret name to be overridden
 {{- end -}}
 
 {{/*
+Create the name of the service account
+*/}}
+{{- define "nobl9-agent.serviceAccountName" -}}
+  {{- if .Values.serviceAccount.create -}}
+    {{- default (include "nobl9-agent.fullname" .) .Values.serviceAccount.name -}}
+  {{- else -}}
+    {{- default "default" .Values.serviceAccount.name -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*
 Common labels
 */}}
 {{- define "nobl9-agent.labels" -}}
