@@ -1,6 +1,6 @@
 apiVersion: v2
 name: nobl9-agent
-version: 1.0.3
+version: 1.0.4
 description: Agent to retrieve SLI metrics from configured data sources and send the data back to the Nobl9 backend.
 home: https://nobl9.com
 sources:

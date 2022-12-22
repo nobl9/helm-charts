@@ -60,5 +60,14 @@ spec:
             {{- with .Values.deployment.extraEnvs }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
+          {{- with .Values.deployment.extraVolumeMounts }}
+          volumeMounts:
+              {{- toYaml . | nindent 12 }}
+          {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+      {{- with .Values.deployment.extraVolumes }}
+      volumes:
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
+
