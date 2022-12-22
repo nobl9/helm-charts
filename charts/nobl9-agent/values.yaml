@@ -29,6 +29,17 @@ deployment:
   #     secretKeyRef:
   #       key: client_secret
   #       name: my-existing-secret
+  # -- Additional Volumes
+  extraVolumes:
+  # - name: gcp-credentials
+  #   secret:
+  #     defaultMode: 420
+  #     secretName: my-bigquery-secret-file
+  # -- Additional Volume mounts
+  extraVolumeMounts:
+  # - mountPath: /var/gcp
+  #   name: gcp-credentials
+  #   readOnly: true
   # -- Custom annotations
   annotations: {}
   # -- Additional Labels
