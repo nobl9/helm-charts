@@ -87,13 +87,14 @@ Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highl
 | config.oktaOrgUrl | string | `"https://accounts.nobl9.com"` | Nobl9 Okta Organization URL |
 | config.organization | string | `nil` | Nobl9 Organization name |
 | config.project | string | `nil` | Nobl9 Project name |
+| debug | bool | `false` | Runs Agent in debug mode |
 | deployment.annotations | object | `{}` | Custom annotations |
 | deployment.extraEnvs | string | `nil` | Additional Envs |
 | deployment.extraVolumeMounts | string | `nil` | Additional Volume mounts |
 | deployment.extraVolumes | string | `nil` | Additional Volumes |
 | deployment.image | string | `"nobl9/agent"` | Image used by chart |
 | deployment.pullPolicy | string | `"Always"` | Image Pull Policy |
-| deployment.version | string | `"0.53.2"` | Agent version (image tag) |
+| deployment.version | string | `"0.69.2"` | Agent version (image tag) |
 | extraLabels | object | `{}` | Additional labels for created objects. |
 | namespaceOverride | string | `nil` | Override the Namespace |
 | resources.limits.cpu | string | `"1.0"` | CPU limit |

@@ -28,6 +28,12 @@ spec:
         - name: agent-container
           image: {{ .Values.deployment.image }}:{{ .Values.deployment.version }}
           imagePullPolicy: {{ .Values.deployment.pullPolicy }}
+          {{- if $.Values.debug }}
+          args:
+            - --debug
+          {{- end}}
+          command:
+            - telegraf
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
