@@ -78,6 +78,8 @@ Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highl
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| args | string | `nil` | Allow to pass additional arguments to the telegraf command for ex. "--debug" |
+| command | list | `["telegraf"]` | Container command |
 | config.allowedUrls | string | `nil` | Populates N9_ALLOWED_URLS that limits the URLs which an Agent is able to query |
 | config.authServer | string | `"auseg9kiegWKEtJZC416"` | Nobl9 Auth Server ID |
 | config.clientId | string | `nil` | Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
@@ -87,7 +89,6 @@ Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highl
 | config.oktaOrgUrl | string | `"https://accounts.nobl9.com"` | Nobl9 Okta Organization URL |
 | config.organization | string | `nil` | Nobl9 Organization name |
 | config.project | string | `nil` | Nobl9 Project name |
-| debug | bool | `false` | Runs Agent in debug mode |
 | deployment.annotations | object | `{}` | Custom annotations |
 | deployment.extraEnvs | string | `nil` | Additional Envs |
 | deployment.extraVolumeMounts | string | `nil` | Additional Volume mounts |

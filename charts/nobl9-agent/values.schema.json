@@ -2,9 +2,9 @@
   "type": "object",
   "$schema": "http://json-schema.org/draft-07/schema",
   "required": [
-    "debug",
-    "deployment",
+    "command",
     "config",
+    "deployment",
     "resources",
     "securityContext",
     "serviceAccount"
@@ -384,12 +384,19 @@
         }
       }
     },
-    "debug": {
+    "command": {
       "type": [
-        "boolean"
+        "array"
       ],
-      "description": "Runs Agent in debug mode",
-      "default": "false"
+      "description": "Container command",
+      "default": ["telegraf"]
+    },
+    "args": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "# -- Allow to pass additional arguments to the telegraf command for ex. \"--debug\""
     }
   }
 }
