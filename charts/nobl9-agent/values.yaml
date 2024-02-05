@@ -7,7 +7,7 @@ deployment:
   # -- Image used by chart
   image: nobl9/agent
   # -- Agent version (image tag)
-  version: "0.53.2"
+  version: "0.69.2"
   # -- Image Pull Policy
   pullPolicy: Always
   # -- Additional Envs
@@ -106,3 +106,12 @@ config:
   # -- Populates N9_ALLOWED_URLS that limits the URLs which an Agent is able to query
   allowedUrls:
 
+# -- Container command
+command:
+  - telegraf
+
+# -- Allow to pass additional arguments to the telegraf command for ex. "--debug"
+args:
+#  - --debug
+#  - --config
+#  - /etc/telegraf/telegraf.conf

@@ -1,0 +1,402 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "required": [
+    "command",
+    "config",
+    "deployment",
+    "resources",
+    "securityContext",
+    "serviceAccount"
+  ],
+  "properties": {
+    "namespaceOverride": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Override the Namespace"
+    },
+    "extraLabels": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Additional labels for created objects."
+    },
+    "deployment": {
+      "type": "object",
+      "required": [
+        "image",
+        "version",
+        "pullPolicy"
+      ],
+      "properties": {
+        "image": {
+          "type": [
+            "string"
+          ],
+          "description": "Image used by chart",
+          "default": "nobl9/agent"
+        },
+        "version": {
+          "type": [
+            "string"
+          ],
+          "description": "Agent version (image tag)",
+          "default": "\"0.69.2\""
+        },
+        "pullPolicy": {
+          "type": [
+            "string"
+          ],
+          "description": "Image Pull Policy",
+          "default": "Always"
+        },
+        "extraEnvs": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Additional Envs",
+          "required": [],
+          "properties": {
+            "name": {
+              "type": [
+                "string"
+              ]
+            },
+            "value": {
+              "type": [
+                "string"
+              ]
+            },
+            "valueFrom": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "secretKeyRef": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "key": {
+                      "type": [
+                        "string"
+                      ]
+                    },
+                    "name": {
+                      "type": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "extraVolumes": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Additional Volumes",
+          "required": [],
+          "properties": {
+            "name": {
+              "type": [
+                "string"
+              ]
+            },
+            "secret": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "defaultMode": {
+                  "type": [
+                    "string"
+                  ]
+                },
+                "secretName": {
+                  "type": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "extraVolumeMounts": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Additional Volume mounts",
+          "required": [],
+          "properties": {
+            "mountPath": {
+              "type": [
+                "string"
+              ]
+            },
+            "name": {
+              "type": [
+                "string"
+              ]
+            },
+            "readOnly": {
+              "type": [
+                "boolean"
+              ],
+              "default": "true"
+            }
+          }
+        },
+        "annotations": {
+          "type": [
+            "object"
+          ],
+          "description": "Custom annotations"
+        }
+      }
+    },
+    "secret": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+      ],
+      "properties": {
+        "nameOverride": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Override the Secret name"
+        },
+        "extraData": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Extra stringData to be included in secret, use deployment.extraEnvs to load as deployment Envs"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "requests": {
+          "type": "object",
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "type": [
+                "string"
+              ],
+              "description": "CPU request",
+              "default": "\"0.1\""
+            },
+            "memory": {
+              "type": [
+                "string"
+              ],
+              "description": "Memory request",
+              "default": "\"350Mi\""
+            }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "type": [
+                "string"
+              ],
+              "description": "CPU limit",
+              "default": "\"1.0\""
+            },
+            "memory": {
+              "type": [
+                "string"
+              ],
+              "description": "Memory limit",
+              "default": "\"1Gi\""
+            }
+          }
+        }
+      }
+    },
+    "securityContext": {
+      "type": "object",
+      "required": [
+        "allowPrivilegeEscalation",
+        "readOnlyRootFilesystem",
+        "runAsNonRoot",
+        "runAsUser"
+      ],
+      "properties": {
+        "allowPrivilegeEscalation": {
+          "type": [
+            "boolean"
+          ],
+          "description": "Grants container a privileged status if set to true",
+          "default": "false"
+        },
+        "readOnlyRootFilesystem": {
+          "type": [
+            "boolean"
+          ],
+          "description": "ReadOnly file system mode if set to true",
+          "default": "true"
+        },
+        "runAsNonRoot": {
+          "type": [
+            "boolean"
+          ],
+          "description": "Runs the container as a root user if set to false",
+          "default": "true"
+        },
+        "runAsUser": {
+          "type": [
+            "number"
+          ],
+          "description": "Runs the container with specified PID",
+          "default": "2000"
+        }
+      }
+    },
+    "serviceAccount": {
+      "type": "object",
+      "required": [
+        "create"
+      ],
+      "properties": {
+        "create": {
+          "type": [
+            "boolean"
+          ],
+          "description": "Allow chart to create service account.",
+          "default": "true"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Service account name. Generated from release name by default."
+        },
+        "labels": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Service account name. Generated from release name by default.\nAdditional labels for service account."
+        },
+        "annotations": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Service account annotations."
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "required": [
+        "project",
+        "organization",
+        "clientId",
+        "clientSecret",
+        "intakeUrl",
+        "authServer",
+        "oktaOrgUrl"
+      ],
+      "properties": {
+        "project": {
+          "type": [
+            "string"
+          ],
+          "description": "Nobl9 Project name"
+        },
+        "organization": {
+          "type": [
+            "string"
+          ],
+          "description": "Nobl9 Organization name"
+        },
+        "datasourceName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Nobl9 Data Source name"
+        },
+        "clientId": {
+          "type": [
+            "string"
+          ],
+          "description": "Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret"
+        },
+        "clientSecret": {
+          "type": [
+            "string"
+          ],
+          "description": "Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret"
+        },
+        "intakeUrl": {
+          "type": [
+            "string"
+          ],
+          "description": "Nobl9 API URL",
+          "default": "\"https://app.nobl9.com/api/input\""
+        },
+        "authServer": {
+          "type": [
+            "string"
+          ],
+          "description": "Nobl9 Auth Server ID",
+          "default": "\"auseg9kiegWKEtJZC416\""
+        },
+        "oktaOrgUrl": {
+          "type": [
+            "string"
+          ],
+          "description": "Nobl9 Okta Organization URL",
+          "default": "\"https://accounts.nobl9.com\""
+        },
+        "allowedUrls": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Populates N9_ALLOWED_URLS that limits the URLs which an Agent is able to query"
+        }
+      }
+    },
+    "command": {
+      "type": [
+        "array"
+      ],
+      "description": "Container command",
+      "default": ["telegraf"]
+    },
+    "args": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "# -- Allow to pass additional arguments to the telegraf command for ex. \"--debug\""
+    }
+  }
+}

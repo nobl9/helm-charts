@@ -78,6 +78,8 @@ Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highl
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| args | string | `nil` | Allow to pass additional arguments to the telegraf command for ex. "--debug" |
+| command | list | `["telegraf"]` | Container command |
 | config.allowedUrls | string | `nil` | Populates N9_ALLOWED_URLS that limits the URLs which an Agent is able to query |
 | config.authServer | string | `"auseg9kiegWKEtJZC416"` | Nobl9 Auth Server ID |
 | config.clientId | string | `nil` | Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret |
@@ -93,7 +95,7 @@ Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highl
 | deployment.extraVolumes | string | `nil` | Additional Volumes |
 | deployment.image | string | `"nobl9/agent"` | Image used by chart |
 | deployment.pullPolicy | string | `"Always"` | Image Pull Policy |
-| deployment.version | string | `"0.53.2"` | Agent version (image tag) |
+| deployment.version | string | `"0.69.2"` | Agent version (image tag) |
 | extraLabels | object | `{}` | Additional labels for created objects. |
 | namespaceOverride | string | `nil` | Override the Namespace |
 | resources.limits.cpu | string | `"1.0"` | CPU limit |
