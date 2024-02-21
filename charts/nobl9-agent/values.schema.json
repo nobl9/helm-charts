@@ -33,23 +33,17 @@
       ],
       "properties": {
         "image": {
-          "type": [
-            "string"
-          ],
+          "type": "string",
           "description": "Image used by chart",
           "default": "nobl9/agent"
         },
         "version": {
-          "type": [
-            "string"
-          ],
+          "type": "string",
           "description": "Agent version (image tag)",
           "default": "\"0.69.2\""
         },
         "pullPolicy": {
-          "type": [
-            "string"
-          ],
+          "type": "string",
           "description": "Image Pull Policy",
           "default": "Always"
         },
@@ -62,100 +56,49 @@
           "required": [],
           "properties": {
             "name": {
-              "type": [
-                "string"
-              ]
+              "type": "string"
             },
             "value": {
-              "type": [
-                "string"
-              ]
+              "type": "string"
             },
             "valueFrom": {
-              "type": "object",
-              "required": [],
-              "properties": {
-                "secretKeyRef": {
-                  "type": "object",
-                  "required": [],
-                  "properties": {
-                    "key": {
-                      "type": [
-                        "string"
-                      ]
-                    },
-                    "name": {
-                      "type": [
-                        "string"
-                      ]
-                    }
-                  }
-                }
-              }
+              "type": "object"
             }
           }
         },
         "extraVolumes": {
           "type": [
-            "object",
+            "array",
             "null"
           ],
           "description": "Additional Volumes",
-          "required": [],
           "properties": {
             "name": {
-              "type": [
-                "string"
-              ]
-            },
-            "secret": {
-              "type": "object",
-              "required": [],
-              "properties": {
-                "defaultMode": {
-                  "type": [
-                    "string"
-                  ]
-                },
-                "secretName": {
-                  "type": [
-                    "string"
-                  ]
-                }
-              }
+              "type": "string"
             }
           }
         },
         "extraVolumeMounts": {
           "type": [
-            "object",
+            "array",
             "null"
           ],
           "description": "Additional Volume mounts",
           "required": [],
           "properties": {
             "mountPath": {
-              "type": [
-                "string"
-              ]
+              "type": "string"
             },
             "name": {
-              "type": [
-                "string"
-              ]
+              "type": "string"
             },
             "readOnly": {
-              "type": [
-                "boolean"
-              ],
-              "default": "true"
+              "type": "boolean"
             }
           }
         },
         "annotations": {
-          "type": [
-            "object"
-          ],
+          "type": "object",
           "description": "Custom annotations"
         }
       }
@@ -196,16 +139,12 @@
           ],
           "properties": {
             "cpu": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "CPU request",
               "default": "\"0.1\""
             },
             "memory": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Memory request",
               "default": "\"350Mi\""
             }
@@ -219,16 +158,12 @@
           ],
           "properties": {
             "cpu": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "CPU limit",
               "default": "\"1.0\""
             },
             "memory": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Memory limit",
               "default": "\"1Gi\""
             }
@@ -246,30 +181,22 @@
       ],
       "properties": {
         "allowPrivilegeEscalation": {
-          "type": [
-            "boolean"
-          ],
+          "type": "boolean",
           "description": "Grants container a privileged status if set to true",
           "default": "false"
         },
         "readOnlyRootFilesystem": {
-          "type": [
-            "boolean"
-          ],
+          "type": "boolean",
           "description": "ReadOnly file system mode if set to true",
           "default": "true"
         },
         "runAsNonRoot": {
-          "type": [
-            "boolean"
-          ],
+          "type": "boolean",
           "description": "Runs the container as a root user if set to false",
           "default": "true"
         },
         "runAsUser": {
-          "type": [
-            "number"
-          ],
+          "type": "number",
           "description": "Runs the container with specified PID",
           "default": "2000"
         }
@@ -282,9 +209,7 @@
       ],
       "properties": {
         "create": {
-          "type": [
-            "boolean"
-          ],
+          "type": "boolean",
           "description": "Allow chart to create service account.",
           "default": "true"
         },
@@ -347,23 +272,17 @@
           "description": "Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret"
         },
         "intakeUrl": {
-          "type": [
-            "string"
-          ],
+          "type": "string",
           "description": "Nobl9 API URL",
           "default": "\"https://app.nobl9.com/api/input\""
         },
         "authServer": {
-          "type": [
-            "string"
-          ],
+          "type": "string",
           "description": "Nobl9 Auth Server ID",
           "default": "\"auseg9kiegWKEtJZC416\""
         },
         "oktaOrgUrl": {
-          "type": [
-            "string"
-          ],
+          "type": "string",
           "description": "Nobl9 Okta Organization URL",
           "default": "\"https://accounts.nobl9.com\""
         },
@@ -377,9 +296,7 @@
       }
     },
     "command": {
-      "type": [
-        "array"
-      ],
+      "type": "array",
       "description": "Container command",
       "default": ["telegraf"]
     },
@@ -418,9 +335,7 @@
           "config": {
             "properties": {
               "clientSecret": {
-                "type": [
-                  "null"
-                ]
+                "type": "null"
               }
             }
           }
@@ -431,9 +346,7 @@
           "config": {
             "properties": {
               "clientSecret": {
-                "type": [
-                  "string"
-                ]
+                "type": "string"
               }
             }
           }
@@ -466,9 +379,7 @@
           "config": {
             "properties": {
               "clientId": {
-                "type": [
-                  "null"
-                ]
+                "type": "null"
               }
             }
           }
@@ -479,9 +390,7 @@
           "config": {
             "properties": {
               "clientId": {
-                "type": [
-                  "string"
-                ]
+                "type": "string"
               }
             }
           }
