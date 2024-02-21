@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "https://json-schema.org/draft-07/schema#",
   "required": [
     "command",
     "config",
@@ -55,7 +55,7 @@
         },
         "extraEnvs": {
           "type": [
-            "object",
+            "array",
             "null"
           ],
           "description": "Additional Envs",
@@ -314,10 +314,6 @@
     "config": {
       "type": "object",
       "required": [
-        "project",
-        "organization",
-        "clientId",
-        "clientSecret",
         "intakeUrl",
         "authServer",
         "oktaOrgUrl"
@@ -325,13 +321,15 @@
       "properties": {
         "project": {
           "type": [
-            "string"
+            "string",
+            "null"
           ],
           "description": "Nobl9 Project name"
         },
         "organization": {
           "type": [
-            "string"
+            "string",
+            "null"
           ],
           "description": "Nobl9 Organization name"
         },
@@ -343,15 +341,9 @@
           "description": "Nobl9 Data Source name"
         },
         "clientId": {
-          "type": [
-            "string"
-          ],
           "description": "Nobl9 Client ID, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret"
         },
         "clientSecret": {
-          "type": [
-            "string"
-          ],
           "description": "Nobl9 Client secret, creates secret with this value, leave empty and use deployment.extraEnvs to load from existing Secret"
         },
         "intakeUrl": {
@@ -398,5 +390,103 @@
       ],
       "description": "# -- Allow to pass additional arguments to the telegraf command for ex. \"--debug\""
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "deployment": {
+            "properties": {
+              "extraEnvs": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "const": "N9_CLIENT_SECRET"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "config": {
+            "properties": {
+              "clientSecret": {
+                "type": [
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "config": {
+            "properties": {
+              "clientSecret": {
+                "type": [
+                  "string"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deployment": {
+            "properties": {
+              "extraEnvs": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "const": "N9_CLIENT_ID"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "config": {
+            "properties": {
+              "clientId": {
+                "type": [
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "config": {
+            "properties": {
+              "clientId": {
+                "type": [
+                  "string"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }
