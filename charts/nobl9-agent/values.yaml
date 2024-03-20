@@ -14,7 +14,7 @@ deployment:
   extraEnvs:
   # - name: API_KEY
   #   value: my-api-key
-  # - name: splunk_api_token
+  # - name: SPLUNK_APP_TOKEN
   #   valueFrom:
   #     secretKeyRef:
   #       key: my-existing-secret-key
@@ -49,7 +49,7 @@ secret:
   nameOverride:
   # -- Extra stringData to be included in secret, use deployment.extraEnvs to load as deployment Envs
   extraData:
-    # splunk_api_token: my-api-token
+    # SPLUNK_APP_TOKEN: my-app-token
 
 resources:
   requests:
