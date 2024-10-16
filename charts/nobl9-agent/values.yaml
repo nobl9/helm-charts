@@ -45,7 +45,7 @@ deployment:
   # -- Node selector
   nodeSelector: {}
   # disktype: ssd
-  # -- Node affiniti
+  # -- Affinity settings
   affinity: {}
   # nodeAffinity:
   #   requiredDuringSchedulingIgnoredDuringExecution:
