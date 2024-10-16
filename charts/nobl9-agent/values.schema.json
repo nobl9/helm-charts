@@ -100,6 +100,14 @@
         "annotations": {
           "type": "object",
           "description": "Custom annotations"
+        },
+        "nodeSelector": {
+          "type": "object",
+          "description": "Key value pairs for node selector"
+        },
+        "affinity": {
+          "type": "object",
+          "description": "Affinity settings"
         }
       }
     },
