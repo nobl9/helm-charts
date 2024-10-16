@@ -43,10 +43,10 @@ deployment:
   # -- Custom annotations
   annotations: {}
   # -- Node selector
-  nodeSelector:
+  nodeSelector: {}
   # disktype: ssd
   # -- Node affiniti
-  affinity:
+  affinity: {}
   # nodeAffinity:
   #   requiredDuringSchedulingIgnoredDuringExecution:
   #     nodeSelectorTerms:
