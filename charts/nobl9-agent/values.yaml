@@ -45,6 +45,7 @@ deployment:
   # -- Node selector
   nodeSelector: {}
   # disktype: ssd
+  tolerations: []
   # -- Affinity settings
   affinity: {}
   # nodeAffinity:
