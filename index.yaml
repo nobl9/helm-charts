@@ -2,10 +2,10 @@ apiVersion: v1
 entries:
   nobl9-agent:
   - apiVersion: v2
-    created: "2024-10-16T11:55:44.617106386Z"
+    created: "2025-03-24T14:48:26.039035533Z"
     description: Agent to retrieve SLI metrics from configured data sources and send
       the data back to the Nobl9 backend.
-    digest: 1ee2c1284605fc96932c63f169a9f4cd29375d3a525b91ba6a0da0cd2896597c
+    digest: 764cd70b5e35d588c7989f6a26d6edb31d857b927276f5c0031abe90e762cf0e
     home: https://nobl9.com
     maintainers:
     - email: support@nobl9.com
@@ -18,7 +18,7 @@ entries:
     - https://nobl9.github.io/helm-charts/nobl9-agent-1.0.8.tgz
     version: 1.0.8
   - apiVersion: v2
-    created: "2024-10-16T11:55:44.6166541Z"
+    created: "2025-03-24T14:48:26.038563387Z"
     description: Agent to retrieve SLI metrics from configured data sources and send
       the data back to the Nobl9 backend.
     digest: e2fb051967bdb5fb14743a95fcab8e5c3ee391faebb415b46ce6a8647fdb265d
@@ -34,7 +34,7 @@ entries:
     - https://nobl9.github.io/helm-charts/nobl9-agent-1.0.7.tgz
     version: 1.0.7
   - apiVersion: v2
-    created: "2024-10-16T11:55:44.616217253Z"
+    created: "2025-03-24T14:48:26.038135213Z"
     description: Agent to retrieve SLI metrics from configured data sources and send
       the data back to the Nobl9 backend.
     digest: 1ec0a234ee83a93fc385afd0efa5cb58f5051469ee600730eb91cc0a6764ca4a
@@ -50,7 +50,7 @@ entries:
     - https://nobl9.github.io/helm-charts/nobl9-agent-1.0.6.tgz
     version: 1.0.6
   - apiVersion: v2
-    created: "2024-10-16T11:55:44.615765959Z"
+    created: "2025-03-24T14:48:26.037621381Z"
     description: Agent to retrieve SLI metrics from configured data sources and send
       the data back to the Nobl9 backend.
     digest: 8ba7fb91eeddc59a94a5bd9e5d7b4627a72884c88c365b8a4074587fd6d26266
@@ -66,7 +66,7 @@ entries:
     - https://nobl9.github.io/helm-charts/nobl9-agent-1.0.5.tgz
     version: 1.0.5
   - apiVersion: v2
-    created: "2024-10-16T11:55:44.615291682Z"
+    created: "2025-03-24T14:48:26.036974201Z"
     description: Agent to retrieve SLI metrics from configured data sources and send
       the data back to the Nobl9 backend.
     digest: 95831ec4f20c4af52bc35327cbb020f36c6f733940788aeb2a0832f103402e21
@@ -82,7 +82,7 @@ entries:
     - https://nobl9.github.io/helm-charts/nobl9-agent-1.0.4.tgz
     version: 1.0.4
   - apiVersion: v2
-    created: "2024-10-16T11:55:44.61490543Z"
+    created: "2025-03-24T14:48:26.035740382Z"
     description: Agent to retrieve SLI metrics from configured data sources and send
       the data back to the Nobl9 backend.
     digest: 7297facda887a4bbb7e257ff33d42ca166e5b3e3aa40f63327b3af9a969be67c
@@ -98,7 +98,7 @@ entries:
     - https://nobl9.github.io/helm-charts/nobl9-agent-1.0.3.tgz
     version: 1.0.3
   - apiVersion: v2
-    created: "2024-10-16T11:55:44.614520941Z"
+    created: "2025-03-24T14:48:26.035075579Z"
     description: Agent to retrieve SLI metrics from configured data sources and send
       the data back to the Nobl9 backend.
     digest: ec9b637411e0239a3afb8dcb48132b8521b2986768920ad10710022cc7782e09
@@ -115,7 +115,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: 0.48.0
-    created: "2024-10-16T11:55:44.614188159Z"
+    created: "2025-03-24T14:48:26.034583567Z"
     description: Agent to retrieve SLI metrics from configured data sources and send
       the data back to the Nobl9 backend.
     digest: b7180346028a6d2d7cdb797e8ef97a3925aa44a4dc89a46965eeb8755f5ad524
@@ -130,4 +130,4 @@ entries:
     urls:
     - https://nobl9.github.io/helm-charts/nobl9-agent-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-16T11:55:44.613661414Z"
+generated: "2025-03-24T14:48:26.034033697Z"
