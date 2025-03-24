@@ -45,7 +45,16 @@ deployment:
   # -- Node selector
   nodeSelector: {}
   # disktype: ssd
+  # -- Tolerations
   tolerations: []
+  # tolerations:
+  #  - key: "key1"
+  #    operator: "Equal"
+  #    value: "value1"
+  #    effect: "NoSchedule"
+  #  - key: "key2"
+  #    operator: "Exists"
+  #    effect: "NoSchedule"
   # -- Affinity settings
   affinity: {}
   # nodeAffinity:
