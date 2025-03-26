@@ -108,6 +108,10 @@
         "affinity": {
           "type": "object",
           "description": "Affinity settings"
+        },
+        "tolerations": {
+          "type": "array",
+          "description": "Tolerations settings"
         }
       }
     },
