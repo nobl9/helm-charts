@@ -97,6 +97,7 @@ Go to the [docs.nobl9.com](https://docs.nobl9.com/Nobl9_Agent/helm-charts?_highl
 | deployment.image | string | `"nobl9/agent"` | Image used by chart |
 | deployment.nodeSelector | object | `{}` | Node selector |
 | deployment.pullPolicy | string | `"Always"` | Image Pull Policy |
+| deployment.tolerations | list | `[]` | Tolerations |
 | deployment.version | string | `"0.69.2"` | Agent version (image tag) |
 | extraLabels | object | `{}` | Additional labels for created objects. |
 | namespaceOverride | string | `nil` | Override the Namespace |
